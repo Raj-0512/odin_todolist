@@ -64,7 +64,7 @@ export default function modalAddNewProject()
 }
 
 
- function addProjectToUi(title)
+ export function addProjectToUi(title)
 {
     const project_container = document.createElement("div");
     project_container.className = "project_container";
@@ -78,7 +78,13 @@ export default function modalAddNewProject()
     delete_icon.addEventListener("click",()=>{
         ProjectManager.deleteProject(title);
         project_container.remove();
-    })
+    });
+
+    const project_todo_title = document.createElement("div");
+    project_todo_title.id = "project_todo_title";
+    project_todo_title.textContent = title;
+
+    document.getElementById("main_content_container").append(project_todo_title);
 
 
     document.getElementById("projects_list_container").append(project_container);

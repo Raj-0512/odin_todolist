@@ -10,6 +10,11 @@
     height: 100vh;
 }
 
+#main_content_hr{
+ margin-top: 87px;
+    border-color: #f4f2f2;
+}
+
 #projects_list_container{
     display: flex;
     justify-content: flex-start;
@@ -144,4 +149,62 @@ body{
 }
 .delete_icon:hover{
     cursor: pointer;
+}
+
+#todo_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 52%;
+    height: 100px;
+    margin-top: 50px;
+    border-bottom: 1px solid black;
+    margin-left: 250px;
+}
+
+#todo_checkbox_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+
+}
+#todo_checkbox_container input {
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    appearance: none;
+    border: 1px solid black;
+}
+#todo_main_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+
+}
+#todo_content_container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+
+}
+#todo_icons_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: 50px;
+
+}
+#project_todo_title{
+    font-size: 30px;
+    display: flex;
+    font-weight: bold;
+    justify-content: left;
+    align-items: center;
+    margin-left: 150px;
 }
