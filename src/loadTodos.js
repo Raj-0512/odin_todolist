@@ -1,6 +1,10 @@
 
 
 export default function loadTodos() {
+
+    const todo_list_container = document.createElement("div");
+    todo_list_container.id = "todo_list_container";
+
     const todo_container = document.createElement("div");
     todo_container.id = "todo_container";
 
@@ -21,13 +25,17 @@ export default function loadTodos() {
 
     const todo_title = document.createElement("div");
     todo_title.id = "todo_title";
-    todo_title.textContent = "This is a demo todo";
+    todo_title.textContent = "Demo todo";
     todo_title.style.fontSize = "17px";
 
     const todo_time = document.createElement("div");
     todo_time.id = "todo_time"
     const date = new Date();
     todo_time.textContent = date.toLocaleString();
+
+    const todo_description = document.createElement("div");
+    todo_description.id = "todo_description";
+    todo_description.textContent = "This is a demo todo";
 
     todo_content_container.append(todo_title);
     todo_content_container.append(todo_time);
@@ -57,6 +65,55 @@ export default function loadTodos() {
     todo_container.append(todo_checkbox_container);
     todo_container.append(todo_main_container);
 
-    document.getElementById("main_content_container").append(todo_container);
+    let isExpanded = false;
+    todo_expand_icon.addEventListener("click", ()=>{
+        if(isExpanded)
+        {
+            todo_container.style.height = "90px";
+            todo_description.remove();
+            todo_expand_icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24"><path d="M16.59,5.59L18,7L12,13L6,7L7.41,5.59L12,10.17L16.59,5.59M16.59,11.59L18,13L12,19L6,13L7.41,11.59L12,16.17L16.59,11.59Z" /></svg>`
+            isExpanded = false;
+        }
+        else if(!isExpanded)
+        {
+            todo_container.style.height = "120px";
+            todo_content_container.append(todo_description);
+            todo_expand_icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24"><path d="M7.41,18.41L6,17L12,11L18,17L16.59,18.41L12,13.83L7.41,18.41M7.41,12.41L6,11L12,5L18,11L16.59,12.41L12,7.83L7.41,12.41Z" /></svg>`;
+            isExpanded = true;
+        }
 
+    });
+
+    todo_list_container.append(todo_container);
+    document.getElementById("main_content_container").append(todo_list_container);
+    addTodos();
+}
+
+function addTodos()
+{
+    const add_todo_container = document.createElement("div");
+    add_todo_container.id = "add_todo_container";
+
+    const add_todo_icon = document.createElement("div");
+    add_todo_icon.id = "add_todo_icon";
+    add_todo_icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="17px" height="17px"><path d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 24 13 L 24 24 L 13 24 L 13 26 L 24 26 L 24 37 L 26 37 L 26 26 L 37 26 L 37 24 L 26 24 L 26 13 L 24 13 z"/></svg>`
+
+    const add_todo_text = document.createElement("div");
+    add_todo_text.id = "add_todo_text";
+    add_todo_text.textContent = "Add new task";
+
+    add_todo_container.append(add_todo_icon);
+    add_todo_container.append(add_todo_text);
+    document.getElementById("main_content_container").append(add_todo_container);
+
+    add_todo_icon.addEventListener("click" , ()=>{
+        const modal_todo_form_overlay = document.createElement("div");
+        modal_todo_form_overlay.id = "modal_todo_form_overlay";
+
+        const modal_todo_form = document.createElement("div");
+        modal_todo_form.id = "modal_todo_form";
+
+        document.body.append(modal_todo_form_overlay);
+        modal_todo_form_overlay.append(modal_todo_form);
+    })
 }

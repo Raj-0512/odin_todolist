@@ -8,6 +8,7 @@
     border: 1px solid black;
     width: 75%;
     height: 100vh;
+
 }
 
 #main_content_hr{
@@ -66,7 +67,6 @@ body{
     border-radius: 10px;
     background: #ffffff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 2s ease;
     z-index: 101;
 }
 
@@ -151,36 +151,45 @@ body{
     cursor: pointer;
 }
 
+#todo_list_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
 #todo_container{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 52%;
-    height: 100px;
+    height: 90px;
     margin-top: 50px;
     border-bottom: 1px solid black;
-    margin-left: 250px;
 }
 
 #todo_checkbox_container{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -30px;
 
 }
 #todo_checkbox_container input {
     height: 25px;
     width: 25px;
     border-radius: 20px;
-    appearance: none;
     border: 1px solid black;
 }
+#todo_checkbox:checked{
+    accent-color: #43ff43;
+}
+
 #todo_main_container{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 300px;
+    gap: 20px;
 
 }
 #todo_content_container{
@@ -188,9 +197,10 @@ body{
     justify-content: left;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     margin-left: 10px;
-
+    flex-grow: 1;
+    width: 450px;
 }
 #todo_icons_container{
     display: flex;
@@ -198,7 +208,6 @@ body{
     align-items: center;
     gap: 10px;
     margin-left: 50px;
-
 }
 #project_todo_title{
     font-size: 30px;
@@ -207,4 +216,60 @@ body{
     justify-content: left;
     align-items: center;
     margin-left: 150px;
+}
+#todo_time{
+    text-align: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#todo_title{
+    text-align: left;
+    width: 100%;
+}
+#todo_description{
+    font-size: 17px;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+#add_todo_container{
+    display: flex;
+    width: 200px;
+    height: 30px;
+    margin-top: 50px;
+    margin-left: 305px;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+#add_todo_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#add_todo_icon:hover{
+    cursor: pointer;
+}
+
+#modal_todo_form_overlay{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#modal_todo_form{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
