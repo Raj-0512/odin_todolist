@@ -1,5 +1,6 @@
 import {ProjectManager} from "./Project.js";
 import addProject from "./projectActions.js";
+import renderActiveProject from "./render.js";
 
 export default function modalAddNewProject()
 {
@@ -45,18 +46,18 @@ export default function modalAddNewProject()
     });
 
     create_btn.addEventListener('click',function(event){
-        event.preventDefault();
         const title = project_name_input.value.trim();
         const isTitleValid = project_name_input.reportValidity();
 
-        if(!isTitleValid)
-        {
-            console.log("Project name cannot be empty");
-        }
-        else
-        {
+        if (isTitleValid) {
+
             addProject(title);
             addProjectToUi(title);
+
+            ProjectManager.setActiveProject(title);
+
+            renderActiveProject();
+
             modal_form_overlay.remove();
             modal_form.remove();
         }
@@ -74,10 +75,40 @@ export default function modalAddNewProject()
         <path d="M 10.806641 2 C 10.289641 2 9.7956875 2.2043125 9.4296875 2.5703125 L 9 3 L 4 3 A 1.0001 1.0001 0 1 0 4 5 L 20 5 A 1.0001 1.0001 0 1 0 20 3 L 15 3 L 14.570312 2.5703125 C 14.205312 2.2043125 13.710359 2 13.193359 2 L 10.806641 2 z M 4.3652344 7 L 5.8925781 20.263672 C 6.0245781 21.253672 6.877 22 7.875 22 L 16.123047 22 C 17.121047 22 17.974422 21.254859 18.107422 20.255859 L 19.634766 7 L 4.3652344 7 z"/>
     </svg>
 `;
+
+    project_container.addEventListener('click', () => {
+        ProjectManager.setActiveProject(title);
+        renderActiveProject();
+    });
+
     const delete_icon = project_container.querySelector('.delete_icon');
-    delete_icon.addEventListener("click",()=>{
+    delete_icon.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        const wasActive = ProjectManager.getActiveProject()?.name === title;
+
+        // Delete the project from manager and UI
         ProjectManager.deleteProject(title);
         project_container.remove();
+
+        // If the project we just deleted *was* the active one...
+        if (wasActive) {
+            // Check if any projects are left
+            if (ProjectManager.projects.length > 0) {
+                // Yes: set the first project as the new active one
+                const newActiveProjectName = ProjectManager.projects[ProjectManager.projects.length - 1].name;
+                ProjectManager.setActiveProject(newActiveProjectName);
+            } else {
+                // No: the list is empty. Create a new "Demo" project.
+                ProjectManager.addProject("Demo");
+                ProjectManager.createTodo("Demo Todo", "This is a demo task", new Date().toLocaleDateString());
+                ProjectManager.setActiveProject("Demo");
+                // Manually add the new Demo project to the sidebar UI
+                addProjectToUi("Demo");
+            }
+
+            // Render whatever project is now active
+            renderActiveProject();
+        }
     });
 
     const project_todo_title = document.createElement("div");
@@ -96,6 +127,14 @@ export function displayProjectTitle(title) {
     project_todo_title.id = "project_todo_title";
     project_todo_title.textContent = title;
 
-    document.getElementById("main_content_container").append(project_todo_title);
+    const mainContainer = document.getElementById("main_content_container");
+
+    const listContainer = document.getElementById("todo_list_container");
+
+    if (mainContainer && listContainer) {
+        mainContainer.insertBefore(project_todo_title, listContainer);
+    } else {
+        mainContainer.append(project_todo_title);
+    }
 }
 

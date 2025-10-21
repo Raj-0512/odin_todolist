@@ -1,5 +1,5 @@
-import {todoManager} from "./todo.js";
-import renderTodo from "./render.js"
+import { ProjectManager } from "./Project.js";
+import {renderTodo} from "./render.js"
 export function addBtnToUi()
 {
     const add_todo_container = document.createElement("div");
@@ -69,13 +69,15 @@ export function addBtnToUi()
             let description = modal_form_description.value;
             let date = modal_form_date.value;
 
-            todoManager.createTodo(title,description,date);
+            ProjectManager.createTodo(title, description, date);
 
-            const newTodo = todoManager.todos[todoManager.todos.length - 1];
+
+            const activeProject = ProjectManager.getActiveProject();
+            const newTodo = activeProject.todos[activeProject.todos.length - 1];
+
             renderTodo(newTodo);
 
             modal_todo_form_overlay.remove();
-            modal_todo_form.remove();
 
         });
     });

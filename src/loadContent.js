@@ -1,9 +1,16 @@
-import modalAddNewProject, {displayProjectTitle} from './modalNewProject.js';
-import addProject from "./projectActions";
-import {addProjectToUi} from "./modalNewProject.js";
-import loadTodos from "./loadTodos.js";
+import modalAddNewProject, { addProjectToUi } from './modalNewProject.js';
+import { ProjectManager } from "./Project.js";
+import renderActiveProject from "./render.js";
+import { addBtnToUi } from "./createTodos.js";
 
-export default function loadContent()
+export function renderProjectList() {
+    document.getElementById("projects_list_container").innerHTML = "";
+
+    ProjectManager.projects.forEach(project => {
+        addProjectToUi(project.name);
+    });
+}
+export function loadContent()
 {
     const sidebar_container = document.createElement("div");
     sidebar_container.id = "sidebar_container";
@@ -11,10 +18,14 @@ export default function loadContent()
     const main_content_container = document.createElement("div");
     main_content_container.id = "main_content_container";
 
+    const todo_list_container = document.createElement("div");
+    todo_list_container.id = "todo_list_container";
+
     const main_content_hr = document.createElement("hr");
     main_content_hr.id = "main_content_hr";
 
     main_content_container.append(main_content_hr);
+    main_content_container.append(todo_list_container);
 
     document.body.append(sidebar_container);
     document.body.append(main_content_container);
@@ -36,10 +47,11 @@ export default function loadContent()
     sidebar_container.append(myProjectTitle);
     sidebar_container.append(projects_list_container);
     sidebar_container.append(add_new_project_button);
-    addProject("Demo");
-    addProjectToUi("Demo");
-    displayProjectTitle("Demo");
 
-    loadTodos();
+    ProjectManager.initializeDemo();
+    renderProjectList();
+    renderActiveProject();
+
+    addBtnToUi();
 
 }
