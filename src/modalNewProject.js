@@ -84,9 +84,18 @@ export default function modalAddNewProject()
     project_todo_title.id = "project_todo_title";
     project_todo_title.textContent = title;
 
-    document.getElementById("main_content_container").append(project_todo_title);
-
-
     document.getElementById("projects_list_container").append(project_container);
+}
+export function displayProjectTitle(title) {
+    const existingTitle = document.getElementById("project_todo_title");
+    if (existingTitle) {
+        existingTitle.remove();
+    }
+
+    const project_todo_title = document.createElement("div");
+    project_todo_title.id = "project_todo_title";
+    project_todo_title.textContent = title;
+
+    document.getElementById("main_content_container").append(project_todo_title);
 }
 

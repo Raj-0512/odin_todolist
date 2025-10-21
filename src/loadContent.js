@@ -1,4 +1,4 @@
-import modalAddNewProject from './modalNewProject.js';
+import modalAddNewProject, {displayProjectTitle} from './modalNewProject.js';
 import addProject from "./projectActions";
 import {addProjectToUi} from "./modalNewProject.js";
 import loadTodos from "./loadTodos.js";
@@ -38,6 +38,8 @@ export default function loadContent()
     sidebar_container.append(add_new_project_button);
     addProject("Demo");
     addProjectToUi("Demo");
+    displayProjectTitle("Demo");
 
     loadTodos();
+
 }

@@ -63,7 +63,7 @@ body{
     height: 350px;
     width: 250px;
     position: fixed;
-    gap: 60px;
+    gap: 30px;
     border-radius: 10px;
     background: #ffffff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -85,6 +85,7 @@ body{
     font-size: 20px;
     margin-top: 20px;
     margin-bottom: 60px;
+    text-align: center;
 }
 
 #action_btn_container{
@@ -156,7 +157,6 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid black;
 }
 
 #todo_container{
@@ -265,11 +265,75 @@ body{
 }
 #modal_todo_form{
     display:flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    height: 500px;
-    width: 300px;
+    height: 600px;
+    width: 400px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+}
+
+#modal_form_title{
+    width: 80%;
+    height: 30px;
+    margin-top: 70px;
+    text-align: left;
+    font-size: 17px;
+}
+
+#modal_form_description{
+    width: 80%;
+    height: 200px;
+    text-align: left;
+    font-size: 17px;
+}
+#modal_form_description::placeholder{
+
+}
+#modal_form_date{
+    width: 80%;
+    height: 30px;
+    margin-top: 50px;
+}
+
+#modal_form_action_btn_container{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 50px;
+}
+#modal_form_cancel_btn{
+    width: 30%;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(219, 223, 224);
+    color: black;
+}
+#modal_form_cancel_btn:hover{
+    cursor: pointer;
+    background-color: rgb(188, 193, 196);
+}
+#modal_form_create_btn{
+    width: 30%;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(66, 133, 244);
+    color: white;
+}
+#modal_form_create_btn:hover{
+    background-color: rgb(60, 114, 213);
+    cursor: pointer;
 }
