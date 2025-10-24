@@ -82,12 +82,23 @@ class projectManager {
     }
 
     initializeDemo() {
-        if (this.projects.length === 0) {
+        let demoProject = this.getProject("Demo");
+
+
+        if (!demoProject) {
+
             this.addProject("Demo");
+            demoProject = this.getProject("Demo");
+
+
+            demoProject.addTodo("Demo Todo", "This is a demo task", new Date().toLocaleDateString());
+            this.save();
+        }
+
+
+
+        if (!this.getActiveProject()) {
             this.setActiveProject("Demo");
-            this.createTodo("Demo Todo", "This is a demo task", new Date().toLocaleDateString());
-        } else {
-            this.setActiveProject(this.projects[0].name);
         }
     }
 

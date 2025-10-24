@@ -102,27 +102,19 @@ export default function modalAddNewProject()
 
             if (ProjectManager.projects.length > 0) {
 
-                const newActiveProjectName = ProjectManager.projects[ProjectManager.projects.length - 1].name;
-                ProjectManager.setActiveProject(newActiveProjectName);
+                ProjectManager.setActiveProject(ProjectManager.projects[0].name);
             } else {
 
-                ProjectManager.addProject("Demo");
-                ProjectManager.createTodo("Demo Todo", "This is a demo task", new Date().toLocaleDateString());
-                ProjectManager.setActiveProject("Demo");
-
-                addProjectToUi("Demo");
+                ProjectManager.initializeDemo();
             }
+
 
             renderProjectList();
             renderActiveProject();
         }
     });
 
-    /*
-    const project_todo_title = document.createElement("div");
-    project_todo_title.id = "project_todo_title";
-    project_todo_title.textContent = title;
-    */
+
     document.getElementById("projects_list_container").append(project_container);
 }
 export function displayProjectTitle(title) {

@@ -1,19 +1,18 @@
 #sidebar_container{
-    border: 1px solid black;
     width: 25%;
     height: 100vh;
     background-color: #e8f0f2;
 }
 #main_content_container{
-    border: 1px solid black;
     width: 75%;
     height: 100vh;
-
+    background-color: #FFFDF5;
 }
 
 #main_content_hr{
- margin-top: 87px;
-    border-color: #f4f2f2;
+    margin-top: 87px;
+    border-color: white;
+    width: 95%;
 }
 
 #projects_list_container{
@@ -208,6 +207,10 @@ body{
     align-items: center;
     gap: 10px;
     margin-left: 50px;
+}
+
+.todo_delete_icon:hover , .todo_expand_icon:hover , .todo_edit_icon:hover{
+    cursor: pointer;
 }
 #project_todo_title{
     font-size: 30px;

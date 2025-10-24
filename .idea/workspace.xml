@@ -7,9 +7,8 @@
     <list default="true" id="f5d81bf8-b8f5-42f6-910a-ce6a05edd4cd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createTodos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/createTodos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/loadContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/loadContent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/render.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/render.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modalNewProject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modalNewProject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +85,7 @@
       <workItem from="1761050048048" duration="14570000" />
       <workItem from="1761138602970" duration="417000" />
       <workItem from="1761139153257" duration="2857000" />
-      <workItem from="1761322135522" duration="986000" />
+      <workItem from="1761322135522" duration="3019000" />
     </task>
     <servers />
   </component>
