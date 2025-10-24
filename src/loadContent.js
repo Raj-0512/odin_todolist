@@ -1,15 +1,8 @@
-import modalAddNewProject, { addProjectToUi } from './modalNewProject.js';
+import modalAddNewProject, { addProjectToUi , renderProjectList} from './modalNewProject.js';
 import { ProjectManager } from "./Project.js";
 import renderActiveProject from "./render.js";
 import { addBtnToUi } from "./createTodos.js";
 
-export function renderProjectList() {
-    document.getElementById("projects_list_container").innerHTML = "";
-
-    ProjectManager.projects.forEach(project => {
-        addProjectToUi(project.name);
-    });
-}
 export function loadContent()
 {
     const sidebar_container = document.createElement("div");
@@ -47,6 +40,8 @@ export function loadContent()
     sidebar_container.append(myProjectTitle);
     sidebar_container.append(projects_list_container);
     sidebar_container.append(add_new_project_button);
+
+    ProjectManager.load();
 
     ProjectManager.initializeDemo();
     renderProjectList();

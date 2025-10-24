@@ -27,9 +27,35 @@ class projectManager {
         this.activeProjectName = null;
     }
 
+    save()
+    {
+        localStorage.setItem('Projects' , JSON.stringify(this.projects));
+    }
+
+    load()
+    {
+        const json_projects = localStorage.getItem("Projects");
+
+        if(json_projects)
+        {
+            const plain_projects = JSON.parse(json_projects);
+
+            this.projects = plain_projects.map(plain_project => {
+            const project = new Project(plain_project.name);
+            project.todos = plain_project.todos.map(plainTodo => {
+                const todo = new Todo(plainTodo.title , plainTodo.description , plainTodo.date);
+                todo.isCompleted = plainTodo.isCompleted;
+                return todo;
+            });
+            return project;
+            });
+        }
+    }
+
     addProject(name) {
         const newProject = new Project(name);
         this.projects.push(newProject);
+        this.save();
         return newProject;
     }
 
@@ -49,6 +75,7 @@ class projectManager {
         const activeProject = this.getActiveProject();
         if (activeProject) {
             activeProject.addTodo(title, description, date);
+            this.save();
         } else {
             console.error("No active project!");
         }
@@ -66,6 +93,22 @@ class projectManager {
 
     deleteProject(name) {
         this.projects = this.projects.filter(project => project.name !== name);
+        this.save();
+    }
+
+    deleteTodo(title)
+    {
+        const activeProject = this.getActiveProject();
+
+        if (activeProject)
+        {
+            activeProject.todos = activeProject.todos.filter(todo => todo.title !== title);
+            this.save();
+        }
+        else
+        {
+            console.error("No active project to delete from!");
+        }
     }
 }
 

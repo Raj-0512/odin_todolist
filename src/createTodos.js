@@ -1,5 +1,6 @@
 import { ProjectManager } from "./Project.js";
-import {renderTodo} from "./render.js"
+import renderActiveProject, {renderTodo} from "./render.js"
+
 export function addBtnToUi()
 {
     const add_todo_container = document.createElement("div");
@@ -18,6 +19,13 @@ export function addBtnToUi()
     document.getElementById("main_content_container").append(add_todo_container);
 
     add_todo_icon.addEventListener("click" , ()=> {
+        displayModalForm();
+    });
+
+}
+
+export function displayModalForm(existingTodo = null)
+{
         const modal_todo_form_overlay = document.createElement("div");
         modal_todo_form_overlay.id = "modal_todo_form_overlay";
 
@@ -49,6 +57,17 @@ export function addBtnToUi()
         modal_form_create_btn.id = "modal_form_create_btn";
         modal_form_create_btn.textContent = "Create";
 
+    if (existingTodo) {
+        modal_form_title.value = existingTodo.title;
+        modal_form_description.value = existingTodo.description;
+        modal_form_date.value = existingTodo.date;
+        modal_form_create_btn.textContent = "Update";
+    }
+    else
+    {
+        modal_form_create_btn.textContent = "Create";
+    }
+
         modal_form_action_btn_container.append(modal_form_cancel_btn);
         modal_form_action_btn_container.append(modal_form_create_btn);
 
@@ -69,17 +88,28 @@ export function addBtnToUi()
             let description = modal_form_description.value;
             let date = modal_form_date.value;
 
-            ProjectManager.createTodo(title, description, date);
+            if (existingTodo)
+            {
+                existingTodo.title = title;
+                existingTodo.description = description;
+                existingTodo.date = date;
 
+                ProjectManager.save();
 
-            const activeProject = ProjectManager.getActiveProject();
-            const newTodo = activeProject.todos[activeProject.todos.length - 1];
+                renderActiveProject();
+            }
+            else
+            {
+                ProjectManager.createTodo(title, description, date);
 
-            renderTodo(newTodo);
+                const activeProject = ProjectManager.getActiveProject();
+                const newTodo = activeProject.todos[activeProject.todos.length - 1];
+
+                renderTodo(newTodo);
+            }
 
             modal_todo_form_overlay.remove();
 
         });
-    });
-}
 
+}

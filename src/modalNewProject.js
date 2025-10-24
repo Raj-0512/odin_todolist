@@ -2,6 +2,14 @@ import {ProjectManager} from "./Project.js";
 import addProject from "./projectActions.js";
 import renderActiveProject from "./render.js";
 
+export function renderProjectList() {
+    document.getElementById("projects_list_container").innerHTML = "";
+
+    ProjectManager.projects.forEach(project => {
+        addProjectToUi(project.name);
+    });
+}
+
 export default function modalAddNewProject()
 {
     const modal_form_overlay = document.createElement("div");
@@ -86,35 +94,35 @@ export default function modalAddNewProject()
         e.stopPropagation();
         const wasActive = ProjectManager.getActiveProject()?.name === title;
 
-        // Delete the project from manager and UI
+
         ProjectManager.deleteProject(title);
         project_container.remove();
 
-        // If the project we just deleted *was* the active one...
         if (wasActive) {
-            // Check if any projects are left
+
             if (ProjectManager.projects.length > 0) {
-                // Yes: set the first project as the new active one
+
                 const newActiveProjectName = ProjectManager.projects[ProjectManager.projects.length - 1].name;
                 ProjectManager.setActiveProject(newActiveProjectName);
             } else {
-                // No: the list is empty. Create a new "Demo" project.
+
                 ProjectManager.addProject("Demo");
                 ProjectManager.createTodo("Demo Todo", "This is a demo task", new Date().toLocaleDateString());
                 ProjectManager.setActiveProject("Demo");
-                // Manually add the new Demo project to the sidebar UI
+
                 addProjectToUi("Demo");
             }
 
-            // Render whatever project is now active
+            renderProjectList();
             renderActiveProject();
         }
     });
 
+    /*
     const project_todo_title = document.createElement("div");
     project_todo_title.id = "project_todo_title";
     project_todo_title.textContent = title;
-
+    */
     document.getElementById("projects_list_container").append(project_container);
 }
 export function displayProjectTitle(title) {
