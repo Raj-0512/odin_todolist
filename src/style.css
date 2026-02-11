@@ -1,12 +1,13 @@
 #sidebar_container{
     width: 25%;
     height: 100vh;
-    background-color: #e8f0f2;
+    background-color: #16aeeb;
 }
 #main_content_container{
     width: 75%;
     height: 100vh;
-    background-color: #FFFDF5;
+    background-color: #000000;
+    color: white;
 }
 
 #main_content_hr{
@@ -47,11 +48,11 @@ body{
     border-radius: 5px;
     font-size: 20px;
     margin-left: 20px;
-    background-color: rgb(66, 133, 244);
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 #add_new_project_container:hover{
-    background-color: rgb(60, 114, 213);
+    background-color: rgb(38, 38, 38);
     cursor: pointer;
 }
 #modal_form{
@@ -165,7 +166,7 @@ body{
     width: 52%;
     height: 90px;
     margin-top: 50px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
 }
 
 .todo_checkbox_container{
